@@ -12,15 +12,8 @@ class LimitedIterator implements Iterator
 {
     const DEFAULT_ITERATION_LIMIT = 10000;
 
-    /** @var int */
-    private $iterations = 0;
-
-    /** @var int */
-    private $iterationLimit;
-
-    public function __construct(int $iterationLimit = self::DEFAULT_ITERATION_LIMIT)
+    public function __construct(private int $iterationLimit = self::DEFAULT_ITERATION_LIMIT, private int $iterations = 0)
     {
-        $this->iterationLimit = $iterationLimit;
     }
 
     /**
@@ -46,7 +39,7 @@ class LimitedIterator implements Iterator
      *
      * @since 5.0.0
      */
-    public function next()
+    public function next(): void
     {
         $this->iterations++;
         if ($this->iterations > $this->iterationLimit) {
@@ -65,7 +58,7 @@ class LimitedIterator implements Iterator
      *
      * @since 5.0.0
      */
-    public function key()
+    public function key(): ?int
     {
         return $this->iterations;
     }
@@ -80,7 +73,7 @@ class LimitedIterator implements Iterator
      *
      * @since 5.0.0
      */
-    public function valid()
+    public function valid(): bool
     {
         return $this->iterations <= $this->iterationLimit;
     }
@@ -94,7 +87,7 @@ class LimitedIterator implements Iterator
      *
      * @since 5.0.0
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->iterations = 0;
     }

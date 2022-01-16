@@ -11,22 +11,14 @@ namespace BusinessTime;
  */
 class BusinessTimePeriod
 {
-    /** @var BusinessTime */
-    private $start;
-
-    /** @var BusinessTime */
-    private $end;
-
     /**
      * BusinessTimePeriod constructor.
      *
      * @param BusinessTime $start
      * @param BusinessTime $end
      */
-    public function __construct(BusinessTime $start, BusinessTime $end)
+    public function __construct(private BusinessTime $start, private BusinessTime $end)
     {
-        $this->start = $start;
-        $this->end = $end;
     }
 
     /**

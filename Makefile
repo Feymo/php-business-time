@@ -1,9 +1,9 @@
 .PHONY: test
 test: src tests vendor/autoload.php
-	./vendor/phpmd/phpmd/src/bin/phpmd src text \
+	./vendor/bin/phpmd src text \
 		controversial,naming,unusedcode
-	./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 --colors src
-	./vendor/phpunit/phpunit/phpunit
+	./vendor/bin/phpcs --standard=PSR2 --colors src
+	./vendor/bin/phpunit
 
 vendor/autoload.php:
 	composer install
@@ -12,10 +12,10 @@ vendor/autoload.php:
 coverage: src tests vendor/autoload.php
 	mkdir -p build
 	rm -rf build/*
-	./vendor/phpmd/phpmd/src/bin/phpmd src text \
+	./vendor/bin/phpmd src text \
 			controversial,naming,unusedcode \
 			--reportfile ./build/phpmd.xml
-	./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 --colors src \
+	./vendor/bin/phpcs --standard=PSR2 --colors src \
 		--report-file=./build/phpcs.xml
-	./vendor/phpunit/phpunit/phpunit --coverage-clover=build/logs/clover.xml \
+	./vendor/bin/phpunit --coverage-clover=build/logs/clover.xml \
 		--coverage-html=build/coverage --coverage-text

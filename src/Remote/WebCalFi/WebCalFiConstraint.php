@@ -61,7 +61,7 @@ class WebCalFiConstraint implements BusinessTimeConstraint, BusinessTimeNarrator
      *
      * @return WebCalFiDate|null
      */
-    private function dateFor(DateTimeInterface $time)
+    private function dateFor(DateTimeInterface $time): ?WebCalFiDate
     {
         if (isset($this->dates[$time->format(self::FORMAT)])) {
             return $this->dates[$time->format(self::FORMAT)];

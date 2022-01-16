@@ -11,31 +11,19 @@ use Carbon\Carbon;
  */
 class WebCalFiDate
 {
-    /** @var Carbon */
-    public $date;
-
-    /** @var string */
-    public $name;
-
-    /** @var string */
-    public $url;
-
-    /** @var string */
-    public $description;
-
     /**
      * WebCalFiDate constructor.
      *
-     * @param string $date
+     * @param Carbon $date
      * @param string $name
      * @param string $url
      * @param string $description
      */
     public function __construct(
-        string $date,
-        string $name = '',
-        string $url = '',
-        string $description = ''
+        public Carbon $date,
+        public string $name = '',
+        public string $url = '',
+        public string $description = ''
     ) {
         $this->date = new Carbon($date);
         $this->name = $name;

@@ -15,26 +15,20 @@ use stdClass;
  */
 class WebCalFiFactory
 {
-    /** @var ClientInterface */
-    private $client;
-
-    /** @var string */
-    private $calendarUrl;
-
-    /** @var WebCalFiDate[] Cache of retrieved dates */
-    private $dates;
-
     /**
      * @param ClientInterface $client
      * @param string          $calendarUrl
+     * @param WebCalFiDate[]  $dates
      *
      * e.g. https://www.webcal.fi/cal.php?id=83&format=json
      *
      * @see https://www.webcal.fi/en-GB/calendars.php
      */
     public function __construct(
-        ClientInterface $client,
-        string $calendarUrl = ''
+        private ClientInterface $client,
+        private string $calendarUrl = '',
+        /** Cache of retrieved dates */
+        private ?array $dates = null
     ) {
         $this->client = $client;
         $this->calendarUrl = $calendarUrl;

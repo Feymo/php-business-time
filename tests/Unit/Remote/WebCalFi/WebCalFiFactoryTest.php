@@ -22,7 +22,7 @@ class WebCalFiFactoryTest extends TestCase
     /**
      * @throws \ReflectionException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -30,7 +30,7 @@ class WebCalFiFactoryTest extends TestCase
     }
 
     /**
-     * Test getting a WebCal.fi business time constraint with the network
+     * Test getting a WebCal.guru business time constraint with the network
      * mocked out.
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -40,7 +40,7 @@ class WebCalFiFactoryTest extends TestCase
         // Given we have a WebCalFi constraint factory;
         $factory = new WebCalFiFactory($this->client);
 
-        // And the WebCal.fi service has a date (at a nice restaurant);
+        // And the WebCal.guru service has a date (at a nice restaurant);
         $this->client->expects($this->any())
             ->method('request')
             ->willReturn(
@@ -52,7 +52,7 @@ class WebCalFiFactoryTest extends TestCase
     {
         "date": "2018-01-01",
         "name": "New Year's Day",
-        "url": "https://webcal.fi/example",
+        "url": "https://webcal.guru/example",
         "description": "1st January is New Year's Day"
     }
 ]
@@ -83,7 +83,7 @@ JSON
     }
 
     /**
-     * Test getting WebCal.fi date objects with the network mocked out.
+     * Test getting WebCal.guru date objects with the network mocked out.
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -91,9 +91,9 @@ JSON
     {
         // Given we have a WebCalFi constraint factory;
         $factory = new WebCalFiFactory($this->client);
-        $factory->setCalendarUrl('https://www.webcal.fi/example');
+        $factory->setCalendarUrl('https://www.webcal.guru/example');
 
-        // And the WebCal.fi service has some dates;
+        // And the WebCal.guru service has some dates;
         $this->client->expects($this->any())
             ->method('request')
             ->willReturn(
@@ -105,13 +105,13 @@ JSON
     {
         "date": "2018-01-01",
         "name": "New Year's Day",
-        "url": "https://webcal.fi/example",
+        "url": "https://webcal.guru/example",
         "description": "1st January is New Year's Day"
     },
     {
         "date": "2018-05-07",
         "name": "Early May bank holiday",
-        "url": "https://webcal.fi/example",
+        "url": "https://webcal.guru/example",
         "description": "7th May 2018 is the Early May bank holiday"
     }
 ]
@@ -147,7 +147,7 @@ JSON
         // Given we have a WebCalFi constraint factory;
         $factory = new WebCalFiFactory($this->client);
 
-        // And the WebCal.fi service is not in a good mood;
+        // And the WebCal.guru service is not in a good mood;
         $this->client->expects($this->any())
             ->method('request')
             ->willReturn(new Response(500));
@@ -167,7 +167,7 @@ JSON
         // Given we have a WebCalFi constraint factory;
         $factory = new WebCalFiFactory($this->client);
 
-        // And the WebCal.fi service is returning bad JSON today;
+        // And the WebCal.guru service is returning bad JSON today;
         $this->client->expects($this->any())
             ->method('request')
             ->willReturn(new Response(200), [], '[{');

@@ -15,7 +15,7 @@ class WebCalFiFactoryTest extends TestCase
     /**
      * Skip tests if it it's not possible to connect to WebCal.Fi.
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -57,7 +57,7 @@ class WebCalFiFactoryTest extends TestCase
         );
         self::assertContains(
             'Christmas',
-            $holidaysConstraint->narrate($christmasDay)
+            [$holidaysConstraint->narrate($christmasDay)]
         );
     }
 
@@ -87,7 +87,7 @@ class WebCalFiFactoryTest extends TestCase
         );
         self::assertContains(
             'Independence',
-            $holidaysConstraint->narrate($independenceDay)
+            [$holidaysConstraint->narrate($independenceDay)]
         );
     }
 }
